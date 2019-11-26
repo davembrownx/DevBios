@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Developer } from '../developer';
+import { DeveloperService } from '../developer.service';
 
 @Component({
   selector: 'app-bio',
@@ -9,13 +10,12 @@ import { Developer } from '../developer';
 export class BioComponent implements OnInit {
 
   devs:Developer[];
-  constructor() { }
+  constructor(
+    private developerService:DeveloperService
+  ) { }
 
   loadDeveloper():void{
-   this.devs = [
-     new Developer("Jason","Monroe","C#",2008),
-     new Developer("Bill","Gates","BASIC",1970)
-   ];
+   this.devs = this.developerService.getAllDevelopers();
   }
 
   ngOnInit() {
